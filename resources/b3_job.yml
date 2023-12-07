@@ -13,10 +13,10 @@ resources:
           - rodrigo.santos@blueshift.com.br
 
       tasks:
+            notebook_path: ../exploration.ipynb
       #  - task_key: refresh_pipeline
       #    pipeline_task:
       #      pipeline_id: ${resources.pipelines.b3_pipeline.id}
-            notebook_path: ../exploration.ipynb
         
       job_clusters:
         - job_cluster_key: job_cluster
