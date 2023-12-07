@@ -1,0 +1,12 @@
+# The main pipeline for b3
+resources:
+  pipelines:
+    b3_pipeline:
+      name: b3_pipeline
+      target: b3_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../exploration.ipynb
+
+      configuration:
+        bundle.sourcePath: /Workspace/${workspace.file_path}/src
