@@ -21,6 +21,13 @@ resources:
         - task_key: refresh_pipeline
           pipeline_task:
             pipeline_id: ${resources.pipelines.b3_pipeline.id}
+
+        - task_key: main_task
+          job_cluster_key: job_cluster
+          depends_on:
+            - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../exploration.ipynb
         
       job_clusters:
         - job_cluster_key: job_cluster
