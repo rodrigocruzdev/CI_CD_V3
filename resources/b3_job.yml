@@ -13,14 +13,17 @@ resources:
           - rodrigo.santos@blueshift.com.br
 
       tasks:
+        - task_key: notebook_task
+          job_cluster_key: job_cluster
           notebook_task:
             notebook_path: ../exploration.ipynb
-      #  - task_key: refresh_pipeline
-      #    pipeline_task:
-      #      pipeline_id: ${resources.pipelines.b3_pipeline.id}
+
+        - task_key: refresh_pipeline
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.b3_pipeline.id}
         
-      # job_clusters:
-      #   - job_cluster_key: job_cluster
+      job_clusters:
+        - job_cluster_key: job_cluster
           new_cluster:
             spark_version: 13.3.x-scala2.12
             node_type_id: Standard_D3_v2
