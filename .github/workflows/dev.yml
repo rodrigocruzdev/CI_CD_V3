@@ -3,9 +3,11 @@ name: Deploy to DEV
 concurrency: 1
 
 on:
+  workflow_dispatch:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
     branches: [ "dev" ]
+    types: [closed]
 
 
 jobs:
@@ -33,13 +35,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-#       - uses: actions/setup-python@v4
-#         with:
-#           python-version: 3.11
-#           cache: 'pip'
-
-#       - run: pip install -r requirements.txt
-#         working-directory: .github/support 
 
       - uses: databricks/setup-cli@main
 
