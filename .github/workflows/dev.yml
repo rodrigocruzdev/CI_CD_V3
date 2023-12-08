@@ -5,9 +5,9 @@ concurrency: 1
 on:
   workflow_dispatch:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  pull_request:
+  push:
     branches: [ "dev" ]
-    types: [closed]
+    # types: [closed]
 
 
 jobs:
@@ -20,7 +20,9 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - run: databricks bundle deploy -t dev
+      - run: |
+             databricks bundle destroy -t dev --auto-approve 
+             databricks bundle deploy  -t dev
         env:
           DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
