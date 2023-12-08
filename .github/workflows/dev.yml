@@ -20,10 +20,12 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - shell: bash
-        run: |
-             databricks bundle destroy -t dev --auto-approve 
-             databricks bundle deploy  -t dev
+      - run: databricks bundle destroy -t dev --auto-approve 
+        env:
+          DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: dev
+
+      - run: databricks bundle deploy -t dev
         env:
           DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
