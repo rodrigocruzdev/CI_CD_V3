@@ -12,7 +12,7 @@ on:
 
 jobs:
   deploy:
-    name: "Deploy bundle"
+    name: "destroy bundle"
     runs-on: ubuntu-latest
     continue-on-error: true
 
@@ -26,6 +26,10 @@ jobs:
           DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
           DATABRICKS_BUNDLE_ENV: dev
 
+  deploy2:
+    name: "Deploy bundle"
+    runs-on: ubuntu-latest
+    steps:
       - run: databricks bundle deploy -t dev
         env:
           DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
