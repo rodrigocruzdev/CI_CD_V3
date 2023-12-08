@@ -20,7 +20,8 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - run: |
+      - shell: bash
+        run: |
              databricks bundle destroy -t dev --auto-approve 
              databricks bundle deploy  -t dev
         env:
