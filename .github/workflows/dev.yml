@@ -5,15 +5,33 @@ concurrency: 1
 on:
   workflow_dispatch:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  pull_request:
+  push:
     branches: [ "dev" ]
-    types: [closed]
+    # types: [closed]
 
 
 jobs:
   deploy:
+    name: "destroy bundle"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: databricks/setup-cli@main
+
+      - run: databricks bundle destroy -t dev --auto-approve 
+        env:
+          DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: dev
+
+  deploy2:
     name: "Deploy bundle"
     runs-on: ubuntu-latest
+
+    needs:
+      - deploy
 
     steps:
       - uses: actions/checkout@v3
@@ -30,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs:
-      - deploy
+      - deploy2
 
     steps:
       - uses: actions/checkout@v3
