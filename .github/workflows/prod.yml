@@ -4,16 +4,10 @@ concurrency: 1
 
 on:
   workflow_dispatch:
-
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   pull_request:
-    types:
-      - opened
-      - synchronize
-    branches:
-      - main
-    paths:
-      - "**/*.yml"
-      - "**/*.py"
+    branches: [ "main" ]
+    types: [closed]
 
 jobs:
   deploy:
