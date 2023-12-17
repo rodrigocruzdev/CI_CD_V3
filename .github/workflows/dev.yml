@@ -27,7 +27,7 @@ jobs:
             if [ -f utils/requirements.txt ]; then pip install -r utils/requirements.txt; fi
 
       - name: Run unit tests
-        run: python -m pytest --import-mode=append tests/
+        run:  pytest -q  test/test.py
         
       - run: databricks bundle destroy -t dev --auto-approve 
         env:
