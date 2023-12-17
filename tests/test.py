@@ -15,4 +15,4 @@ def test_calculate_area_square_string():
 
 def test_calculate_area_square_list():
     with pytest.raises(TypeError):
-        calculate([2])
+        calculate([2]) 
