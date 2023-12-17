@@ -20,12 +20,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - uses: databricks/setup-cli@main
-
-      - run: databricks bundle destroy -t dev --auto-approve 
-        env:
-          DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
-          DATABRICKS_BUNDLE_ENV: dev
-
+      
       - name: Install dependencies  
         run: |  
             python -m pip install --upgrade pip
@@ -33,6 +28,12 @@ jobs:
 
       - name: Run unit tests
         run: python -m pytest --import-mode=append tests/
+        
+      - run: databricks bundle destroy -t dev --auto-approve 
+        env:
+          DATABRICKS_TOKEN: dapi4fb66acece55adcfbe32044d139f24f6-3 #${{ secrets.E2_DEMO_WEST_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: dev
+
 
   deploy2:
     name: "Deploy bundle"
